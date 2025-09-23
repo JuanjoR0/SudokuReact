@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #1a1a1a;
+  color: #eee;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(9, 40px);
+  grid-template-rows: repeat(9, 40px);
+  margin: 20px auto;
+  width: fit-content;
+}
+
+.su {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #444;
+  background: #111;
+  color: #0ff;
+}
