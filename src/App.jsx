@@ -94,12 +94,22 @@ function App() {
   const generar = () => {
     const lista = DEMO[dificultad];
     if (!lista) return;
+
     const t = cargarDesdeCadena(lista[0]);
+    const prueba = JSON.parse(JSON.stringify(t));
+    const { ok } = resolverSudoku(prueba);
+
+    if (!ok) {
+      setMensaje("El puzzle de esta dificultad no es resoluble. Revisa DEMO.");
+      return;
+    }
+
     const mask = t.map(fila => fila.map(v => v !== 0));
     setBoard(t);
     setFijas(mask);
     setMensaje("Sudoku generado");
   };
+
 
   const formatTime = (s) => {
     const m = Math.floor(s / 60), ss = s % 60;
