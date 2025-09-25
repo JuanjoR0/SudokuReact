@@ -2,36 +2,16 @@ import React, { useState, useEffect } from "react";
 import {tableroVacio,DEMO,esTableroValido,resolverSudoku,esColocacionValida,cargarDesdeCadena,} from "./sudokuUtils";
 
 function App() {
-  const tableroVacio = () =>
-    Array.from({ length: 9 }, () => Array(9).fill(0));
-
-  const fijasVacias = () =>
-    Array.from({ length: 9 }, () => Array(9).fill(false));
-
   const [fijas, setFijas] = useState(() => {
-    try {
-      const fijasGuardado = JSON.parse(localStorage.getItem("sudoku_fijas"));
-      return Array.isArray(fijasGuardado) && fijasGuardado.length === 9
-        ? fijasGuardado
-        : fijasVacias();
-    } catch {
-      return fijasVacias();
-    }
+    const fijasGuardado = localStorage.getItem("sudoku_fijas");
+    return fijasGuardado ? JSON.parse(fijasGuardado) : [];
   });
-
   const [mensaje, setMensaje] = useState("");
   const [corriendo, setCorriendo] = useState(false);
   const [dificultad, setDificultad] = useState("facil");
-
   const [board, setBoard] = useState(() => {
-    try {
-      const guardado = JSON.parse(localStorage.getItem("sudoku_board"));
-      return Array.isArray(guardado) && guardado.length === 9
-        ? guardado
-        : tableroVacio();
-    } catch {
-      return tableroVacio();
-    }
+    const guardado = localStorage.getItem("sudoku_board");
+    return guardado ? JSON.parse(guardado) : tableroVacio();
   });
 
   const [tiempo, setTiempo] = useState(() => {
